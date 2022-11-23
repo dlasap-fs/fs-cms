@@ -30,3 +30,31 @@
 .links a {
   color: rgb(214, 235, 216);
 }
+
+.header-buttons {
+  background: rgb(51, 107, 62);
+  margin: 0 5px;
+  padding: 0 10px;
+  border-radius: 7px;
+  align-items: center;
+  text-align: center;
+}
+
+.header-buttons:hover {
+  background: rgb(17, 70, 16);
+  cursor: pointer;
+}
+
+.sidebar-button {
+  border-radius: 5px;
+  color: white;
+  background: rgb(51, 107, 62);
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.sidebar-button:hover {
+  background: rgb(17, 70, 16);
+  cursor: pointer;
+}
