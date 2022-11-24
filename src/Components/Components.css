@@ -34,10 +34,14 @@
 .header-buttons {
   background: rgb(51, 107, 62);
   margin: 0 5px;
-  padding: 0 10px;
+  padding: 5px;
   border-radius: 7px;
   align-items: center;
+  justify-content: center;
   text-align: center;
+  display: flex;
+  height: 15px;
+  width: 50px;
 }
 
 .header-buttons:hover {
@@ -52,6 +56,11 @@
   margin-bottom: 5px;
   margin-left: 5px;
   margin-right: 5px;
+  padding-top: 3px;
+  height: 25px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 }
 
 .sidebar-button:hover {

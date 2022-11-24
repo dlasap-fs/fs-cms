@@ -1,0 +1,161 @@
+.form-paper {
+  background: rgb(212, 233, 203);
+  margin: 10px 20px;
+  max-height: 50vh;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.postform-paper {
+  background: rgb(212, 233, 203);
+  margin: 10px 20px;
+  max-height: 20vh;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.postform-paper h2 {
+  padding: 1vh;
+  font-size: xx-large;
+  color: rgb(245, 248, 245);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgb(80, 110, 80);
+}
+
+.postform-paper p {
+  font-size: xx-large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.form-paper h2 {
+  padding: 1vh;
+  font-size: xx-large;
+  color: rgb(245, 248, 245);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgb(80, 110, 80);
+}
+
+.form-grid {
+  display: grid;
+  grid-gap: 5px 0px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.5fr 1fr 0.5fr 1fr 1fr 0.5fr;
+  height: 40vh;
+}
+
+.form-grid div {
+  /* border: 1px red solid; */
+  margin: 0 20px;
+}
+
+.first-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-column: 1/2;
+  text-align: center;
+}
+
+#first_name {
+  text-align: center;
+}
+#last_name {
+  text-align: center;
+}
+
+#physical_address {
+  text-align: center;
+}
+
+#billing_address {
+  text-align: center;
+}
+
+.last-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-column: 2/3;
+  text-align: center;
+}
+
+.form-header {
+  background: rgb(222, 240, 222);
+  border-radius: 15px;
+  grid-column: 1/3;
+  font-weight: 500;
+  font-size: 25px;
+  height: 35px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.physical-address {
+  grid-column: 1/3;
+  text-align: center;
+  justify-self: stretch;
+}
+
+.billing-address {
+  grid-column: 1/3;
+  text-align: center;
+  justify-self: stretch;
+}
+
+.buttons-section {
+  display: flex;
+  grid-column: 2/3;
+  text-align: center;
+  justify-content: end;
+  align-items: center;
+}
+
+.buttons-section button {
+  border-radius: 20px;
+  margin: 5px;
+  max-height: 4vh;
+  cursor: pointer;
+  border: none;
+  width: 100px;
+  color: rgb(255, 255, 255);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.buttons-section button:hover {
+  background: rgb(190, 171, 137);
+}
+
+.submit-button {
+  font-size: 20px;
+  background: rgb(152, 211, 152);
+}
+
+.reset-button {
+  font-size: 20px;
+  background: rgb(214, 157, 157);
+}
+
+.loading-section {
+  align-self: center;
+  width: 80%;
+  max-width: 90%;
+  justify-self: end;
+  justify-content: end;
+}
+
+.postform-paper button {
+  background: green;
+  border-radius: 20px;
+  margin: 5px;
+  cursor: pointer;
+  border: none;
+  width: 100px;
+  color: rgb(255, 255, 255);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
