@@ -34,12 +34,10 @@ function App() {
                     <Header />{" "}
                   </div>
                   <div className="side-bar">
-                    {" "}
                     <SideBar />{" "}
                   </div>
                   <div className="content">
-                    {" "}
-                    <Content />{" "}
+                    <Content />
                   </div>
                   <div className="footer">
                     {" "}

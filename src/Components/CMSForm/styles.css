@@ -1,7 +1,8 @@
 .form-paper {
   background: rgb(212, 233, 203);
   margin: 10px 20px;
-  max-height: 50vh;
+  max-height: 70vh;
+  margin-top: -15px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 .postform-paper {
@@ -21,7 +22,7 @@
 }
 
 .postform-paper p {
-  font-size: xx-large;
+  font-size: 150%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,24 +41,40 @@
 
 .form-grid {
   display: grid;
+  margin-top: -20px;
   grid-gap: 5px 0px;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 2fr 1fr;
   grid-template-rows: 0.5fr 1fr 0.5fr 1fr 1fr 0.5fr;
-  height: 40vh;
+  height: 60vh;
 }
 
 .form-grid div {
   /* border: 1px red solid; */
-  margin: 0 20px;
+  margin: 0 0.45em;
+  display: flex;
 }
 
-.first-name {
+.name {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  grid-column: 1/4;
+  text-align: center;
+}
+
+.fname {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  grid-column: 1/2;
-  text-align: center;
+  width: 60%;
+}
+
+.lname {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  align-items: center;
 }
 
 #first_name {
@@ -75,19 +92,10 @@
   text-align: center;
 }
 
-.last-name {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  grid-column: 2/3;
-  text-align: center;
-}
-
 .form-header {
   background: rgb(222, 240, 222);
   border-radius: 15px;
-  grid-column: 1/3;
+  grid-column: 1/4;
   font-weight: 500;
   font-size: 25px;
   height: 35px;
@@ -98,20 +106,28 @@
 }
 
 .physical-address {
-  grid-column: 1/3;
+  grid-column: 1/4;
   text-align: center;
   justify-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .billing-address {
-  grid-column: 1/3;
+  grid-column: 1/4;
   text-align: center;
   justify-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .buttons-section {
   display: flex;
-  grid-column: 2/3;
+  grid-column: 3/4;
   text-align: center;
   justify-content: end;
   align-items: center;
@@ -142,11 +158,13 @@
 }
 
 .loading-section {
-  align-self: center;
-  width: 80%;
-  max-width: 90%;
-  justify-self: end;
-  justify-content: end;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  grid-column: 1/2;
+  margin: 10px;
+  width: 100%;
+  height: 50%;
 }
 
 .postform-paper button {

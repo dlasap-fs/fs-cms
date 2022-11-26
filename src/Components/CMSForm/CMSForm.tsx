@@ -37,6 +37,7 @@ const CMSForm = () => {
         last_name: "",
         physical_address: "",
         billing_address: "",
+        submit_attempt: false,
       };
     });
   };
@@ -79,49 +80,61 @@ const CMSForm = () => {
   return (
     <>
       {!verified ? (
-        <Paper className="form-paper" variant="elevation">
+        <Paper className="form-paper" variant="elevation" elevation={4}>
           <h2>CMS FORM</h2>
           <div className="form-grid">
             <div className="form-header"> Name </div>
-            <div className="first-name">
-              <label> First Name </label>
-              <TextField
-                id="first_name"
-                variant="standard"
-                sx={{
-                  "& label": {
-                    marginLeft: "35%",
-                  },
-                  width: "90%",
-                }}
-                value={formDetails?.first_name}
-                onChange={(e) => {
-                  handleInput(e);
-                }}
-              />
+            <div className="name">
+              <div className="fname">
+                <label> First Name </label>
+                <TextField
+                  required
+                  error={!formDetails.first_name && formDetails.submit_attempt ? true : false}
+                  helperText={!formDetails.first_name && formDetails.submit_attempt ? "Please enter your first name" : ""}
+                  id="first_name"
+                  variant="standard"
+                  value={formDetails?.first_name}
+                  onChange={(e) => {
+                    handleInput(e);
+                  }}
+                  FormHelperTextProps={{
+                    style: {
+                      textAlign: "center",
+                    },
+                  }}
+                  fullWidth
+                />
+              </div>
+              <div className="lname">
+                <label> Last Name </label>
+                <TextField
+                  required
+                  error={!formDetails.last_name && formDetails.submit_attempt ? true : false}
+                  helperText={!formDetails.last_name && formDetails.submit_attempt ? "Please enter your last name" : ""}
+                  id="last_name"
+                  variant="standard"
+                  onChange={(e) => {
+                    handleInput(e);
+                  }}
+                  FormHelperTextProps={{
+                    style: {
+                      textAlign: "center",
+                    },
+                  }}
+                  fullWidth
+                  value={formDetails?.last_name}
+                />
+              </div>
             </div>
-            <div className="last-name">
-              <label> Last Name </label>
-              <TextField
-                id="last_name"
-                variant="standard"
-                sx={{
-                  "& label": {
-                    marginLeft: "35%",
-                  },
-                  width: "70%",
-                }}
-                onChange={(e) => {
-                  handleInput(e);
-                }}
-                value={formDetails?.last_name}
-              />
-            </div>
+
             <div className="form-header"> Address </div>
             <div className="physical-address">
               {" "}
               <label>Physical Address</label>
               <TextField
+                required
+                error={!formDetails.physical_address && formDetails.submit_attempt ? true : false}
+                helperText={!formDetails.physical_address && formDetails.submit_attempt ? "Please enter physical address" : ""}
                 id="physical_address"
                 variant="standard"
                 sx={{
@@ -134,12 +147,20 @@ const CMSForm = () => {
                 onChange={(e) => {
                   handleInput(e);
                 }}
+                FormHelperTextProps={{
+                  style: {
+                    textAlign: "center",
+                  },
+                }}
               />
             </div>
             <div className="billing-address ">
               {" "}
               <label>Billing Address</label>
               <TextField
+                required
+                error={!formDetails.billing_address && formDetails.submit_attempt ? true : false}
+                helperText={!formDetails.billing_address && formDetails.submit_attempt ? "Please enter billing address" : ""}
                 id="billing_address"
                 variant="standard"
                 sx={{
@@ -152,9 +173,24 @@ const CMSForm = () => {
                 onChange={(e) => {
                   handleInput(e);
                 }}
+                FormHelperTextProps={{
+                  style: {
+                    textAlign: "center",
+                  },
+                }}
               />
             </div>
-            <div className="loading-section">{loader && <LinearProgress variant="query" color="success" />}</div>
+            <div className="loading-section">
+              {loader && (
+                <LinearProgress
+                  variant="query"
+                  color="success"
+                  sx={{
+                    marginLeft: "30%",
+                  }}
+                />
+              )}
+            </div>
             <div className="buttons-section">
               <button className="submit-button" disabled={loader} onClick={handleSubmit}>
                 Submit

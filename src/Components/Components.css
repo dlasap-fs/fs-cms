@@ -56,11 +56,13 @@
   margin-bottom: 5px;
   margin-left: 5px;
   margin-right: 5px;
-  padding-top: 3px;
   height: 25px;
   justify-content: center;
   text-align: center;
   align-items: center;
+  padding: 2px;
+  font-size: 1em;
+  display: flex;
 }
 
 .sidebar-button:hover {
