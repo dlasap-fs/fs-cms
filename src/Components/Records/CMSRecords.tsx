@@ -12,7 +12,7 @@ import "./styles.css";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-import { IconButton, CircularProgress } from "@mui/material";
+import { IconButton, CircularProgress, LinearProgress } from "@mui/material";
 import helper from "../../utils";
 import EditModal from "../DialogModals/EditModal";
 import DeleteDialog from "../DialogModals/DeleteDialog";
@@ -296,67 +296,98 @@ const CMSRecords = () => {
     <Paper className="records-paper" elevation={4}>
       <h2>RECORDS</h2>
       <div className="records-body">
-        <TableContainer sx={{ minHeight: "50%", maxHeight: "500px" }}>
-          <Table stickyHeader aria-label="sticky table">
-            <TableHead>
-              <TableRow>
-                <TableCell style={{ fontSize: "25px", fontFamily: "sans-serif", fontWeight: "bolder" }} align="center" colSpan={2}>
-                  NAME
-                </TableCell>
-                <TableCell style={{ fontSize: "25px", fontFamily: "sans-serif", fontWeight: "bolder" }} align="center" colSpan={2.5}>
-                  DELIVERY ADDRESS
-                </TableCell>
-                <TableCell align="center" colSpan={2}>
-                  {rows.length && loaded ? <SearchBar {...{ handleSearch }} /> : <CircularProgress />}
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                {columns.map((column) => (
-                  <TableCell key={column.id} align={column.align} style={{ top: 57, minWidth: column.minWidth, fontSize: column.fontSize }}>
-                    {column.label}
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
+        <div className="search-bar">
+          {rows.length && loaded ? (
+            <SearchBar {...{ handleSearch }} />
+          ) : (
+            <>
+              <LinearProgress className="record-loading" color="success" />
+            </>
+          )}
+        </div>
 
-            {!loaded && <CircularProgress style={{ top: "28%", left: "50%", position: "absolute" }} />}
-            {filterData.length ? (
-              <TableBody>
-                {filterData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                  return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row?.code}>
-                      {columns.map((column) => {
-                        const value: any = row[column.id as keyof IData];
-                        return (
-                          <TableCell id={column?.id} key={column.id} align={column.align} style={{ fontSize: column?.fontSize }}>
-                            {
-                              (column?.id === "actions" && filterData.length
-                                ? generateActions(row)
-                                : column?.id === "created_date"
-                                ? new Date(value).toDateString()
-                                : value) as JSX.Element
-                            }
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            ) : (
-              <div style={{ position: "relative", margin: "auto", left: "300%" }}> {loaded && "No Records Found."} </div>
-            )}
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          count={filterData.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
+        <>
+          <TableContainer style={{}} sx={{ maxHeight: "600px", width: "99%" }}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  {columns.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      style={{
+                        width: "50px",
+                        fontSize: "1.1em",
+                        fontStyle: "bold",
+                        background: "#222A06",
+                        color: "white",
+                        fontFamily: "Gill Sans",
+                      }}
+                    >
+                      {column.label.toUpperCase()}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+
+              {filterData.length ? (
+                <TableBody>
+                  {filterData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, row_index) => {
+                    return (
+                      <TableRow hover role="checkbox" tabIndex={-1} key={row?.code}>
+                        {columns.map((column, index) => {
+                          const value: any = row[column.id as keyof IData];
+                          return (
+                            <TableCell
+                              id={column?.id}
+                              key={column.id}
+                              className="table-cell"
+                              onClick={() => (column?.id !== "actions" ? handleEditButton(row) : "")}
+                              style={{
+                                fontSize: "0.9em",
+                                textAlign: "center",
+                                padding: "5px",
+                                fontFamily: "Gill Gans",
+                                background: row_index % 2 === 0 ? "white" : "#F0F1ED",
+                              }}
+                            >
+                              {
+                                (column?.id === "actions" && filterData.length
+                                  ? generateActions(row)
+                                  : column?.id === "created_date"
+                                  ? new Date(value).toDateString()
+                                  : value) as JSX.Element
+                              }
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              ) : (
+                <div style={{ position: "relative", margin: "auto", left: "300%" }}> {loaded && "No Records Found."} </div>
+              )}
+            </Table>
+          </TableContainer>
+          {!loaded && (
+            <div className="fetching-section">
+              <CircularProgress color="success" />
+              Fetching Data...
+            </div>
+          )}
+          {loaded && (
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 100]}
+              component="div"
+              count={filterData.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+          )}
+        </>
 
         {showEdit && (
           <EditModal
@@ -368,7 +399,18 @@ const CMSRecords = () => {
               handleConfirmEdit,
             }}
           >
-            {confirm_edit && ((<CircularProgress size={20} style={{ margin: "auto", top: "75%", left: "47%", position: "absolute" }} />) as any)}
+            {confirm_edit &&
+              ((
+                <LinearProgress
+                  color="success"
+                  style={{
+                    margin: "5px",
+                    width: "80%",
+                    marginLeft: "7%",
+                    padding: "5px 5px",
+                  }}
+                />
+              ) as any)}
           </EditModal>
         )}
         {showDelete && (
@@ -382,7 +424,19 @@ const CMSRecords = () => {
               handleConfirmDelete,
             }}
           >
-            {(confirm_delete && <CircularProgress size={20} style={{ margin: "auto" }} />) as JSX.Element}
+            {
+              (confirm_delete && (
+                <LinearProgress
+                  color="success"
+                  style={{
+                    margin: "5px",
+                    width: "80%",
+                    marginLeft: "7%",
+                    padding: "5px 5px",
+                  }}
+                />
+              )) as JSX.Element
+            }
           </DeleteDialog>
         )}
       </div>

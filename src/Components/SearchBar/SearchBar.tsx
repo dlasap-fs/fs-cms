@@ -9,7 +9,7 @@ const SearchBar = (props: ISearchProps) => {
   return (
     <form>
       <TextField id="search_bar" onInput={handleSearch} label="Search a Keyword" variant="outlined" placeholder="Search..." size="small" />
-      <IconButton type="submit" aria-label="search">
+      <IconButton size="medium" aria-label="search">
         <SearchIcon style={{ fill: "blue" }} />
       </IconButton>
     </form>

@@ -48,7 +48,7 @@ export default function DeleteDialog(props: IDeleteDialogProps) {
         </DialogTitle>
         <DialogContent>
           <DialogContentText>{message}</DialogContentText>
-          <DialogContentText style={{ fontSize: "40px" }} color="green">
+          <DialogContentText style={{ fontSize: "40px" }} color="orange">
             {last_name}, {first_name}
           </DialogContentText>
         </DialogContent>
