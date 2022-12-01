@@ -366,7 +366,10 @@ const CMSRecords = () => {
                   })}
                 </TableBody>
               ) : (
-                <div style={{ position: "relative", margin: "auto", left: "300%" }}> {loaded && "No Records Found."} </div>
+                <div style={{ position: "relative", margin: "15px 5px 5px 5px", left: "300%", fontSize: "1.1em" }}>
+                  {" "}
+                  {loaded && "No Records Found."}{" "}
+                </div>
               )}
             </Table>
           </TableContainer>
